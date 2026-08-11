@@ -4,12 +4,18 @@ Homebrew tap for [march](https://github.com/melvinsh/march) — unattended Arch
 Linux ARM VMs on QEMU with a hardware-accelerated Hyprland desktop.
 
 ```sh
+brew trust melvinsh/march
 brew install melvinsh/march/march
 ```
 
-That single command taps this repository and pulls the whole stack: march
-itself, plus `qemu-march`, a QEMU built with both virgl GPU acceleration and
-user-mode networking.
+That pulls the whole stack: march itself, plus `qemu-march`, a QEMU built with
+both virgl GPU acceleration and user-mode networking.
+
+`brew trust` comes first because Homebrew refuses to load formulae from
+untrusted third-party taps, and `march` depends on `qemu-march` from this same
+tap — so installing without it stops partway with *"Refusing to load formula
+melvinsh/march/qemu-march from untrusted tap"*. Trusting the tap also taps it,
+so there is no separate `brew tap` step.
 
 ## Formulae
 
@@ -27,17 +33,23 @@ is keg-only, leaving your stock `qemu` linked and working.
 
 ## Tap trust
 
-Homebrew requires third-party taps to be trusted before it will run their
-formulae. If `brew install` reports that formulae are being ignored:
+Trusting the whole tap is what you want here, because `march` and
+`qemu-march` are separate formulae and both must be loadable:
 
 ```sh
-brew trust --formula melvinsh/march/march
-brew trust --formula melvinsh/march/qemu-march
+brew trust melvinsh/march
 ```
 
+Trusting only `--formula melvinsh/march/march` is not enough — the install
+will fail when it reaches `qemu-march`.
+
 The GPU stack comes from the `startergo` taps (ANGLE, libepoxy,
-virglrenderer), which Homebrew taps automatically as dependencies and which
-may need trusting the same way.
+virglrenderer), which Homebrew taps automatically as dependencies. If it
+reports those as untrusted as well:
+
+```sh
+brew trust startergo/angle startergo/libepoxy startergo/virglrenderer
+```
 
 ## Patches
 
