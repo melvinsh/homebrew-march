@@ -7,10 +7,10 @@
 class March < Formula
   desc "Install and manage hardware-accelerated Arch Linux ARM VMs on QEMU"
   homepage "https://github.com/melvinsh/march"
-  url "https://github.com/melvinsh/march/archive/refs/tags/v1.3.0.tar.gz"
-  sha256 "bfdb537ee1f24f418602009b715d19e7528786798b5064858d1defce43831466"
+  url "https://github.com/melvinsh/march/archive/refs/tags/v1.4.0.tar.gz"
+  sha256 "e3575187d8d874c25aad239521be4c4877e71dd46fc90fb23ccf3e9ea46fd2ac"
   license "MIT"
-  version "1.3.0"
+  version "1.4.0"
 
   depends_on "go" => :build
 
@@ -38,7 +38,7 @@ class March < Formula
       march finds it automatically; nothing needs to be added to PATH.
 
       To let a VM receive every keystroke — including Cmd+Space, which the
-      desktop binds to its menu — grant Accessibility permission to the
+      desktop binds to its launcher — grant Accessibility permission to the
       terminal you run march from:
         System Settings -> Privacy & Security -> Accessibility
     EOS
