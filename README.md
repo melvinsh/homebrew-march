@@ -17,6 +17,14 @@ tap — so installing without it stops partway with *"Refusing to load formula
 melvinsh/march/qemu-march from untrusted tap"*. Trusting the tap also taps it,
 so there is no separate `brew tap` step.
 
+## Where these come from
+
+`Formula/` in this repository is **generated**. Every file in it is a copy of
+[`Formula/` in melvinsh/march](https://github.com/melvinsh/march/tree/main/Formula),
+written by `docs/publish-formulae.sh` there, which refuses to finish unless the
+two directories are identical. Edit the formulae in march and publish from
+there; an edit made here is lost at the next release.
+
 ## Formulae
 
 | Formula | What it is |
